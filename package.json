@@ -1,0 +1,23 @@
+{
+  "name": "service-product-description",
+  "version": "1.0.0",
+  "description": "Product description based on Amazon.com, for the FEC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonjharrison/service-product-description.git"
+  },
+  "author": "Jonathan Harrison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonjharrison/service-product-description/issues"
+  },
+  "homepage": "https://github.com/jonjharrison/service-product-description#readme",
+  "dependencies": {
+    "knex": "^0.15.2",
+    "pg": "^7.5.0"
+  }
+}
