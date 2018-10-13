@@ -22,13 +22,15 @@ function productSize() {
   // provide a measurement type: feet, ounces, or nothing
   var measurementTypes = {
     0: 'feet',
-    1: 'ounces',
-    2: ''
+    1: 'ounces'
   }
 
+  // 2 should be undefined
   var randomIndex = Math.floor(Math.random() * 2);
 
-  return quantity.concat(' ', measurementTypes[randomIndex]);
+  if (measurementTypes[randomIndex]) {
+    return quantity.concat(' ', measurementTypes[randomIndex]);
+  }
 }
 
 function productColor() {
@@ -40,8 +42,15 @@ function productColor() {
     4: 'blue',
     5: 'indigo',
     6: 'purple',
-    7: ''
   }
+
+  // 7 should be undefined
+  var randomIndex = Math.floor(Math.random() * 7);
+
+  if (colorSpectrum[randomIndex]) {
+    return colorSpectrum[randomIndex];
+  }
+
 }
 
 function productDetails() {
