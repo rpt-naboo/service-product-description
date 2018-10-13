@@ -14,8 +14,8 @@ const pg = require('knex')({
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/descriptions', (req, res) => {
-  pg.select().table('descriptions')
+app.get('/:productId/descriptions', (req, res) => {
+  pg.select().table('descriptions').where('product_id', req.params.productId)
   .then(function(rows) {
     res.send(rows);
   });
