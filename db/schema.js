@@ -9,12 +9,8 @@ var pg = require('knex')({
 });
 
 pg.schema.dropTableIfExists('descriptions')
-.then(function() {
-  return pg.schema.dropTableIfExists('packaging_types');
-})
-.then(function() {
-  return pg.schema.dropTableIfExists('product_images');
-})
+.dropTableIfExists('packaging_types')
+.dropTableIfExists('product_images')
 .then(function() {
   return pg.schema.createTable('packaging_types', function(table) {
     table.increments('id').primary().unique();
@@ -46,4 +42,7 @@ pg.schema.dropTableIfExists('descriptions')
 })
 .catch(function(e) {
   console.error(e);
+})
+.then(function() {
+  pg.destroy();
 });
