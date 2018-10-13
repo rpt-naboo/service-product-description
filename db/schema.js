@@ -22,6 +22,7 @@ pg.schema.dropTableIfExists('descriptions')
   })
   .createTable('descriptions', function(table) {
     table.increments('id').primary().unique();
+    table.integer('product_id');
     table.string('product_size');
     table.string('details');
     table.integer('packaging_type_id');
@@ -31,11 +32,27 @@ pg.schema.dropTableIfExists('descriptions')
   });
 })
 .then(function() {
-  return pg.insert({details: 'Great success!'}).into('descriptions');
+  return pg.insert({
+    packaging_type_label: 'frustration-free packaging'
+  }).into('packaging_types');
+})
+.then(function() {
+  return pg.insert({
+    file_id: 'DUMMY_FILE_ID'
+  }).into('product_images')
+})
+.then(function() {
+  return pg.insert({
+    product_id: 1,
+    product_size: '10 ounces',
+    details: 'Puperade is Gatorade, but for your dog. Flavor is beef, but also comes in chicken or turkey.',
+    packaging_type_id: 1,
+    product_image_id: 1
+  }).into('descriptions');
 })
 .then(function() {
   return pg('descriptions')
-    .select('descriptions.details');
+    .select();
 })
 .map(function(row) {
   console.log(row);
