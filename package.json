@@ -4,7 +4,8 @@
   "description": "Product description based on Amazon.com, for the FEC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,11 @@
   },
   "homepage": "https://github.com/jonjharrison/service-product-description#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "knex": "^0.15.2",
     "pg": "^7.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
