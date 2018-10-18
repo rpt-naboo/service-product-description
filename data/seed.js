@@ -71,6 +71,16 @@ function productDetails() {
 }
 
 function packagingType() {
+  var packagingTypes = {
+    0: 'Standard Packaging',
+    1: 'Frustration-Free Packaging'
+  }
+
+  var randomIndex = Math.floor(Math.random() * 2);
+
+  if (packagingTypes[randomIndex]) {
+    return packagingTypes[randomIndex];
+  }
 
 }
 
