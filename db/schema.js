@@ -15,6 +15,7 @@ pg.schema.dropTableIfExists('descriptions')
       table.increments('id').primary().unique();
       table.integer('product_id');
       table.string('product_size');
+      table.string('product_color');
       table.string('details');
       table.integer('packaging_type_id');
       table.foreign('packaging_type_id').references('packaging_types.id');
