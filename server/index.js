@@ -1,16 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 3000;
-
-const pg = require('knex')({
-  client: 'pg',
-  connection: {
-    host: '127.0.0.1',
-    user: 'jonny',
-    password: 'jonny',
-    database: 'product_descriptions'
-  }
-});
+const port = process.env.PORT;
+const { pg } = require('../db/index');
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
