@@ -46,9 +46,11 @@ pg.schema.dropTableIfExists('descriptions')
     .select())
   .map((row) => {
     console.log(row);
+    return row;
   })
   .catch((e) => {
     console.error(e);
+    return e;
   })
   .then(() => {
     pg.destroy();
