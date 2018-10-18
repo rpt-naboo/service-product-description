@@ -1,12 +1,4 @@
-const pg = require('knex')({
-  client: 'pg',
-  connection: {
-    host: '127.0.0.1',
-    user: 'jonny',
-    password: 'jonny',
-    database: 'product_descriptions',
-  },
-});
+const { pg } = require('./index');
 
 pg.schema.dropTableIfExists('descriptions')
   .dropTableIfExists('packaging_types')
