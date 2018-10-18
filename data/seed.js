@@ -1,11 +1,30 @@
-// Function to create a single product description record, given a product ID
+const { pg } = require('../db/index');
+
+var dummyData = [];
+for (var i = 0; i < 100; i++) {
+  dummyData.push(generateDescription(i));
+}
+
+console.log(dummyData);
+
+pg('packaging_types')
+.insert([{packaging_type_label: 'Standard Packaging'}, {packaging_type_label: 'Frustration Free Packaging'}])
+.then(function() {
+  pg('descriptions').insert(dummyData)
+  .then(function() {
+    console.log('One step further');
+  });
+});
+
+// Function to create a single product description record from nothing
 function generateDescription(productId) {
   return {
-    productSize: productSize(),
-    productColor: productColor(),
-    productDetails: productDetails(),
-    packagingType: packagingType(),
-    productImageId: productImageId()
+    product_id: productId,
+    product_size: productSize(),
+    product_color: productColor(),
+    details: productDetails(),
+    packaging_type_id: packagingType(),
+    product_image_id: productImageId()
   };
 }
 
@@ -29,7 +48,7 @@ function productSize() {
   var randomIndex = Math.floor(Math.random() * 2);
 
   if (measurementTypes[randomIndex]) {
-    return quantity.concat(' ', measurementTypes[randomIndex]);
+    return quantity.toString().concat(' ', measurementTypes[randomIndex]);
   }
 }
 
@@ -72,8 +91,8 @@ function productDetails() {
 
 function packagingType() {
   var packagingTypes = {
-    0: 'Standard Packaging',
-    1: 'Frustration-Free Packaging'
+    0: 0,
+    1: 1
   }
 
   var randomIndex = Math.floor(Math.random() * 2);
