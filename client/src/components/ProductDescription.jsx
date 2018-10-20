@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import Details from './Details.jsx';
+import Keywords from './Keywords.jsx';
 import '../style.css';
 
 class ProductDescription extends Component {
   render() {
     return (
       <div className='App'>
-        <h1> Product Description </h1>
+        <h1> Product Descriptions </h1>
         <div></div>
+
         <Keywords />
         <Details />
       </div>
