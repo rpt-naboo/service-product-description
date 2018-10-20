@@ -7,7 +7,7 @@
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack --mode development -d --watch",
     "test": "jest",
-    "lint": "eslint '**/*.{js,jsx}' --ignore-pattern node_modules/"
+    "lint": "eslint '**/*.{js,jsx}'"
   },
   "repository": {
     "type": "git",
