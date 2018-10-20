@@ -1,10 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+
 const port = process.env.PORT;
 const { pg } = require('../db/index');
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use(express.static('client'));
 
 app.get('/:productId/descriptions', (req, res) => {
   pg.select().table('descriptions').where('product_id', req.params.productId)
