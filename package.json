@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/index.js",
-    "lint": "eslint db/schema.js"
+    "lint": "eslint '**/*.{js,jsx}' --ignore-pattern node_modules/"
   },
   "repository": {
     "type": "git",
