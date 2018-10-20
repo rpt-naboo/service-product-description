@@ -13,7 +13,7 @@ pg('packaging_types')
   pg('descriptions')
   .insert(dummyData)
   .then(function() {
-    console.log('One step further');
+    pg.destroy();
   });
 });
 
@@ -46,7 +46,7 @@ function productSize() {
   }
 
   // 2 should be undefined
-  var randomIndex = Math.floor(Math.random() * 2);
+  var randomIndex = Math.floor(Math.random() * 3);
 
   if (measurementTypes[randomIndex]) {
     return quantity.toString().concat(' ', measurementTypes[randomIndex]);
@@ -65,7 +65,7 @@ function productColor() {
   }
 
   // 7 should be undefined
-  var randomIndex = Math.floor(Math.random() * 7);
+  var randomIndex = Math.floor(Math.random() * 8);
 
   if (colorSpectrum[randomIndex]) {
     return colorSpectrum[randomIndex];
@@ -82,7 +82,7 @@ function productDetails() {
     4: 'Cardigan food truck sint edison bulb mumblecore woke. Pour-over post-ironic sed, yr quinoa ennui everyday carry jean shorts aliqua etsy next level bespoke brooklyn vaporware. Velit meggings flexitarian, ut proident fixie sunt cold-pressed microdosing shaman echo park pariatur taiyaki. Biodiesel deserunt viral XOXO. Drinking vinegar freegan lyft lumbersexual before they sold out.',
   }
 
-  var randomIndex = Math.floor(Math.random() * 5);
+  var randomIndex = Math.floor(Math.random() * 6);
 
   if (details[randomIndex]) {
     return details[randomIndex];
@@ -92,11 +92,11 @@ function productDetails() {
 
 function packagingType() {
   var packagingTypes = {
-    0: 0,
-    1: 1
+    0: 1,
+    1: 2
   }
 
-  var randomIndex = Math.floor(Math.random() * 2);
+  var randomIndex = Math.floor(Math.random() * 3);
 
   if (packagingTypes[randomIndex]) {
     return packagingTypes[randomIndex];
