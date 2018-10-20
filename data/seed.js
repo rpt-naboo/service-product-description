@@ -10,7 +10,8 @@ console.log(dummyData);
 pg('packaging_types')
 .insert([{packaging_type_label: 'Standard Packaging'}, {packaging_type_label: 'Frustration Free Packaging'}])
 .then(function() {
-  pg('descriptions').insert(dummyData)
+  pg('descriptions')
+  .insert(dummyData)
   .then(function() {
     console.log('One step further');
   });
