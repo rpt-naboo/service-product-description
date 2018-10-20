@@ -6,6 +6,9 @@ class ProductDescription extends Component {
     return (
       <div className='App'>
         <h1> Product Description </h1>
+        <div></div>
+        <Keywords />
+        <Details />
       </div>
     );
   }
