@@ -7,7 +7,7 @@ const { pg } = require('../db/index');
 
 app.use(express.static('client'));
 
-app.get('/:productId/descriptions', (req, res) => {
+app.get('/:productId/description', (req, res) => {
   pg.select().table('descriptions').where('product_id', req.params.productId)
   .then(function(rows) {
     res.send(rows);

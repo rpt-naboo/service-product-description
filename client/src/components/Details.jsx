@@ -20,7 +20,7 @@ class Details extends Component {
   getProductDetails() {
     let that = this;
 
-    fetch('http://localhost:1337/1/descriptions')
+    fetch(`http://localhost:1337/${1}/description`) // TODO: update for proxy
     .then(function(response) {
       return response.json();
     })
@@ -41,14 +41,11 @@ class Details extends Component {
   render() {
     return (
       <div>
-        <h2>Description:</h2>
-          <p>{this.state.details}</p>
-        <h2>Packaging Type:</h2>
-          <p>{this.state.packagingType}</p>
-        <h2>Product Size:</h2>
-          <p>{this.state.productSize}</p>
-        <h2>Product Color:</h2>
-          <p>{this.state.productColor}</p>
+        <h2>Packaging Type: {this.state.packagingType}</h2>
+        <h2>Product Size: {this.state.productSize}</h2>
+        <h2>Product Color: {this.state.productColor}</h2>
+        <p>{this.state.details}</p>
+        <img src={this.state.product_image_id} alt="Description Picture"/>
       </div>
     );  
   }

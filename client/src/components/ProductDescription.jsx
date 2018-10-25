@@ -7,7 +7,7 @@ class ProductDescription extends Component {
   render() {
     return (
       <div className='App'>
-        <h1> Product Descriptions </h1>
+        <h1>Product Description</h1>
         <Keywords />
         <Details />
       </div>
