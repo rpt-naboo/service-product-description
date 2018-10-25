@@ -2,7 +2,6 @@ const { pg } = require('./index');
 
 pg.schema.dropTableIfExists('descriptions')
   .dropTableIfExists('packaging_types')
-  .dropTableIfExists('product_images')
   .then(() => pg.schema.createTable('packaging_types', (table) => {
     table.increments('id').primary().unique();
     table.string('packaging_type_label');
@@ -17,9 +16,6 @@ pg.schema.dropTableIfExists('descriptions')
       table.foreign('packaging_type_id').references('packaging_types.id');
       table.string('product_image_url');
     }))
-  .then(() => pg.insert({
-    file_id: 'DUMMY_FILE_ID',
-  }).into('product_images'))
   .then(() => pg('descriptions')
     .select())
   .map((row) => {
