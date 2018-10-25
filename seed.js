@@ -24,7 +24,7 @@ function generateDescription(productId) {
     product_color: productColor(),
     details: productDetails(),
     packaging_type_id: packagingType(),
-    product_image_id: productImageId()
+    product_image_url: productImageUrl(),
   };
 }
 
@@ -104,7 +104,7 @@ function packagingType() {
 }
 
 // TODO: this will need to be swapped out to actual filenames as soon as we have
-function productImageId() {
+function productImageUrl() {
   var hasImage = Math.random();
 
   if (hasImage > 0.5) {

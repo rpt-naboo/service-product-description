@@ -7,10 +7,6 @@ pg.schema.dropTableIfExists('descriptions')
     table.increments('id').primary().unique();
     table.string('packaging_type_label');
   })
-    .createTable('product_images', (table) => {
-      table.increments('id').primary().unique();
-      table.string('file_id');
-    })
     .createTable('descriptions', (table) => {
       table.increments('id').primary().unique();
       table.integer('product_id');
@@ -19,8 +15,7 @@ pg.schema.dropTableIfExists('descriptions')
       table.text('details');
       table.integer('packaging_type_id');
       table.foreign('packaging_type_id').references('packaging_types.id');
-      table.integer('product_image_id');
-      table.foreign('product_image_id').references('product_images.id');
+      table.string('product_image_url');
     }))
   .then(() => pg.insert({
     file_id: 'DUMMY_FILE_ID',
