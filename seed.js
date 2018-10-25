@@ -1,4 +1,4 @@
-const { pg } = require('../db/index');
+const { pg } = require('./db/index');
 
 var dummyData = [];
 for (var i = 0; i < 100; i++) {
