@@ -10,4 +10,20 @@ const pg = require('knex')({
   },
 });
 
+const bookshelf = require('bookshelf')(pg);
+
+let Description = bookshelf.Model.extend({
+  tableName: 'descriptions',
+  record: function() {
+    return this.hasOne(PackagingType);
+  }
+});
+
+let PackagingType = bookshelf.Model.extend({
+  tableName: 'packaging_types',
+});
+
 module.exports.pg = pg;
+module.exports.bookshelf = bookshelf;
+module.exports.PackagingType = PackagingType;
+module.exports.Description = Description;
