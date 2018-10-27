@@ -1,11 +1,10 @@
-const { pg } = require('../db/index');
+const { pg } = require('./db/index');
+const faker = require('faker');
 
 var dummyData = [];
 for (var i = 0; i < 100; i++) {
   dummyData.push(generateDescription(i));
 }
-
-console.log(dummyData);
 
 pg('packaging_types')
 .insert([{packaging_type_label: 'Standard Packaging'}, {packaging_type_label: 'Frustration Free Packaging'}])
@@ -25,7 +24,7 @@ function generateDescription(productId) {
     product_color: productColor(),
     details: productDetails(),
     packaging_type_id: packagingType(),
-    product_image_id: productImageId()
+    product_image_url: productImageUrl(),
   };
 }
 
@@ -105,6 +104,10 @@ function packagingType() {
 }
 
 // TODO: this will need to be swapped out to actual filenames as soon as we have
-function productImageId() {
+function productImageUrl() {
+  var hasImage = Math.random();
 
+  if (hasImage > 0.5) {
+    return faker.random.image();
+  }
 }

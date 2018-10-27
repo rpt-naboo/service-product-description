@@ -20,7 +20,7 @@ class Details extends Component {
   getProductDetails() {
     let that = this;
 
-    fetch(`http://localhost:1337/${1}/description`) // TODO: update for proxy
+    fetch(`http://localhost:1337/${0}/description`) // TODO: update for proxy
     .then(function(response) {
       return response.json();
     })
@@ -33,7 +33,7 @@ class Details extends Component {
         productColor: details.product_color,
         packagingType: details.packaging_type_id,
         productSize: details.product_size || 'N/A',
-        productImage: details.product_image_id,
+        productImage: details.product_image_url,
       });
     });
   }
@@ -45,7 +45,10 @@ class Details extends Component {
         <h2>Product Size: {this.state.productSize}</h2>
         <h2>Product Color: {this.state.productColor}</h2>
         <p>{this.state.details}</p>
-        <img src={this.state.product_image_id} alt="Description Picture"/>
+        {
+          this.state.productImage &&
+          <img src={this.state.productImage} alt="Description Picture"/>
+        }
       </div>
     );  
   }
