@@ -14,13 +14,13 @@ const bookshelf = require('bookshelf')(pg);
 
 let Description = bookshelf.Model.extend({
   tableName: 'descriptions',
-  record: function() {
-    return this.hasOne(PackagingType);
-  }
 });
 
 let PackagingType = bookshelf.Model.extend({
   tableName: 'packaging_types',
+  description: function() {
+    return this.belongsTo(Description);
+  }
 });
 
 module.exports.pg = pg;
