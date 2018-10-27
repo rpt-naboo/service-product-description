@@ -1,17 +1,21 @@
-const { pg } = require('./db/index');
+const { pg, bookshelf, PackagingType, Description } = require('./db/index');
 const faker = require('faker');
 
-var dummyData = [];
-for (var i = 0; i < 100; i++) {
-  dummyData.push(generateDescription(i));
+let dummyDescriptions = new bookshelf.Collection;
+for (let i = 1; i <= 100; i++) {
+  let description = generateDescription(i);
+  dummyDescriptions.add(new Description(description));
 }
 
-pg('packaging_types')
-.insert([{packaging_type_label: 'Standard Packaging'}, {packaging_type_label: 'Frustration Free Packaging'}])
-.then(function() {
-  pg('descriptions')
-  .insert(dummyData)
-  .then(function() {
+let packagingTypes = new bookshelf.Collection;
+
+packagingTypes.add([
+  new PackagingType({packaging_type_label: 'Standard Packaging'}),
+  new PackagingType({packaging_type_label: 'Frustration Free Packaging'})
+]);
+
+packagingTypes.invokeThen('save').then(function() {
+  return dummyDescriptions.invokeThen('save').then(function() {
     pg.destroy();
   });
 });
