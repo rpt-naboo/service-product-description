@@ -14,7 +14,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:rpt-naboo/service-product-description.git',
       path: '/home/ubuntu/service-product-description',
-      post-deploy: 'npm install && npm run react-dev',
+      post-deploy: 'npm install && webpack && pm2 startOrRestart ecosystem.config.js',
     }
 
   }
