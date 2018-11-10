@@ -7,7 +7,7 @@ module.exports = {
     production: {
       key: '~/.ssh/hack-reactor-key.pem',
       user: 'ubuntu',
-      host: '52.34.129.254',
+      host: '54.184.107.214',
       ref: 'origin/master',
       repo: 'git@github.com:rpt-naboo/service-product-description.git',
       path: '/home/ubuntu/service-product-description',
