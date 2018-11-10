@@ -19,8 +19,8 @@ class Details extends Component {
 
   getProductDetails() {
     let that = this;
-
-    fetch(`http://localhost:1337/${5}/description`) // TODO: update for proxy
+    
+    fetch(`/${5}/description`) // TODO: update for proxy
     .then(function(response) {
       return response.json();
     })
