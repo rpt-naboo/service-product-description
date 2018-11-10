@@ -2,21 +2,17 @@ module.exports = {
   apps: [{
     name: 'server',
     script: './server/index.js',
-    env: {
-      NODE_ENV: 'development',
-    }
   }],
   deploy: {
     production: {
-      key: '~/.ssh/hack-reactor/hack-reactor-key.pem',
+      key: '~/.ssh/hack-reactor-key.pem',
       user: 'ubuntu',
-      host: [52.34.129.254],
+      host: '54.184.107.214',
       ref: 'origin/master',
       repo: 'git@github.com:rpt-naboo/service-product-description.git',
       path: '/home/ubuntu/service-product-description',
-      post-deploy: 'npm install && webpack && pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'npm install',
     }
-
   }
 }
 
