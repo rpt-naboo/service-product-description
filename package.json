@@ -23,6 +23,7 @@
     "@babel/polyfill": "^7.0.0",
     "bookshelf": "^0.13.3",
     "dotenv": "^6.1.0",
+    "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "knex": "^0.15.2",
     "mongoose": "^5.3.14",
