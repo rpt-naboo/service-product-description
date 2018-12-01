@@ -1,4 +1,4 @@
-const { pg, bookshelf, PackagingType, Description } = require('./db/psql/index');
+const { pg, bookshelf, PackagingType, Description } = require('./index');
 const faker = require('faker');
 
 let dummyDescriptions = new bookshelf.Collection;
