@@ -1,4 +1,4 @@
-const { pg, bookshelf, PackagingType, Description } = require('./db/psql/index');
+const { db } = require('./db/mongo/index');
 const faker = require('faker');
 
 let dummyDescriptions = new bookshelf.Collection;
