@@ -12,6 +12,7 @@ db.once('open', function() {
 });
 
 let descriptionSchema = mongoose.Schema({
+  productId: Number,
   size: String,
   color: String,
   details: String,
