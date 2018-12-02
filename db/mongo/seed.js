@@ -2,7 +2,7 @@ console.log('currently in', __dirname);
 
 const { db, PackagingType, Description } = require('./index');
 const faker = require('faker');
-const numberOfRecords = 100;
+const numberOfRecords = 1000;
 
 var seedDatabase = function() {
   for (let i = 1; i <= numberOfRecords; i++) {
@@ -114,3 +114,4 @@ function productImageUrl() {
 }
 
 seedDatabase();
+
