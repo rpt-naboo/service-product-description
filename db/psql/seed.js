@@ -1,8 +1,9 @@
-const { pg, bookshelf, PackagingType, Description } = require('./db/index');
+const { pg, bookshelf, PackagingType, Description } = require('./index');
 const faker = require('faker');
+const numberOfRecords = 1000;
 
 let dummyDescriptions = new bookshelf.Collection;
-for (let i = 1; i <= 100; i++) {
+for (let i = 1; i <= numberOfRecords; i++) {
   let description = generateDescription(i);
   dummyDescriptions.add(new Description(description));
 }
