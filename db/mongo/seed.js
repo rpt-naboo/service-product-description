@@ -2,23 +2,31 @@ console.log('currently in', __dirname);
 
 const { db, PackagingType, Description } = require('./index');
 const faker = require('faker');
-const numberOfRecords = 10000000;
+const { performance } = require('perf_hooks');
+const numberOfRecords = 1000;
 
 var seedDatabase = function() {
   let count = 1;
 
-  (function addRecord() {
-    let record = new Description(generateDescription(count));
-    record.save(function(err) {
+  (function addRecordArray() {
+    let recordArray = [];
+    while (count <= numberOfRecords) {
+      let record = new Description(generateDescription(count));
+      recordArray.push(record);
+      count++;
+    }
+
+    count--;
+
+    Description.insertMany(recordArray, function(err, docs) {
       if (err) return console.error(err);
 
-      console.log('now adding', count);
-
       if (count === numberOfRecords) {
+        var t1 = performance.now();
+        var secondsElapsed = (t1 - t0) / 1000;
+        console.log(`Script took ${secondsElapsed} seconds.`);
+        
         db.close();
-      } else {
-        count++;
-        addRecord();
       }
     });
   })();
@@ -120,5 +128,5 @@ function productImageUrl() {
   }
 }
 
+var t0 = performance.now();
 seedDatabase();
-
