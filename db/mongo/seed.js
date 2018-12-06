@@ -2,19 +2,26 @@ console.log('currently in', __dirname);
 
 const { db, PackagingType, Description } = require('./index');
 const faker = require('faker');
-const numberOfRecords = 1000;
+const numberOfRecords = 10000000;
 
 var seedDatabase = function() {
-  for (let i = 1; i <= numberOfRecords; i++) {
-    let record = new Description(generateDescription(i));
+  let count = 1;
+
+  (function addRecord() {
+    let record = new Description(generateDescription(count));
     record.save(function(err) {
       if (err) return console.error(err);
 
-      if (i === numberOfRecords) {
+      console.log('now adding', count);
+
+      if (count === numberOfRecords) {
         db.close();
+      } else {
+        count++;
+        addRecord();
       }
     });
-  }
+  })();
 };
 
 // Function to create a single product description record from nothing
