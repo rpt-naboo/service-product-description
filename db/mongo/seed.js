@@ -2,20 +2,36 @@ console.log('currently in', __dirname);
 
 const { db, PackagingType, Description } = require('./index');
 const faker = require('faker');
-const numberOfRecords = 1000;
+const { performance } = require('perf_hooks');
+const t0 = performance.now();
+const numberOfRecords = 10000000;
+let t1, secondsElapsed;
 
-var seedDatabase = function() {
-  for (let i = 1; i <= numberOfRecords; i++) {
-    let record = new Description(generateDescription(i));
-    record.save(function(err) {
-      if (err) return console.error(err);
-
-      if (i === numberOfRecords) {
-        db.close();
-      }
-    });
+(function seedDescriptions(series, count) {
+  series = series || 1;
+  count = count || 0;
+  let recordArray = [];
+  while (count < (series * 1000)) {
+    count++;
+    let record = new Description(generateDescription(count));
+    recordArray.push(record);
   }
-};
+
+  Description.insertMany(recordArray, function(err, docs) {
+    if (err) return console.error(err);
+    series++;
+    t1 = performance.now();
+    secondsElapsed = (t1 - t0) / 1000;
+    // console.log(`It took ${secondsElapsed} seconds (${secondsElapsed / 60} minutes) to fill up to ${count} records.`);
+    
+    if (count === numberOfRecords) {
+      console.log(`Total Time: ${secondsElapsed / 60} minutes\nTime Per Record: ${secondsElapsed / count} seconds`)
+      db.close();
+    } else {
+      seedDescriptions(series, count);
+    }
+  });
+})();
 
 // Function to create a single product description record from nothing
 function generateDescription(productId) {
@@ -112,6 +128,3 @@ function productImageUrl() {
     return faker.random.image();
   }
 }
-
-seedDatabase();
-
