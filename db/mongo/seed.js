@@ -3,30 +3,33 @@ console.log('currently in', __dirname);
 const { db, PackagingType, Description } = require('./index');
 const faker = require('faker');
 const { performance } = require('perf_hooks');
-const numberOfRecords = 1000;
+const numberOfRecords = 10000000;
 
 var seedDatabase = function() {
-  let count = 1;
+  let series = 1;
+  let count = 0;
 
   (function addRecordArray() {
     let recordArray = [];
-    while (count <= numberOfRecords) {
+    console.log(`Starting with ${count}`);
+    while (count < (series * 100000)) {
+      count++;
       let record = new Description(generateDescription(count));
       recordArray.push(record);
-      count++;
     }
-
-    count--;
 
     Description.insertMany(recordArray, function(err, docs) {
       if (err) return console.error(err);
-
+      series++;
+      var t1 = performance.now();
+      var secondsElapsed = (t1 - t0) / 1000;
+      console.log(`It took ${secondsElapsed} seconds (${secondsElapsed / 60} minutes) to fill up to ${count} records.`);
+      
       if (count === numberOfRecords) {
-        var t1 = performance.now();
-        var secondsElapsed = (t1 - t0) / 1000;
-        console.log(`Script took ${secondsElapsed} seconds.`);
-        
+        console.log(`Total Time: ${secondsElapsed / 60} minutes\nTime Per Record: ${secondsElapsed / count} seconds`)
         db.close();
+      } else {
+        addRecordArray();
       }
     });
   })();
